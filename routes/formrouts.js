@@ -1,6 +1,7 @@
-const {Router} = require('express')
-const router = Router()
+const express = require('express');
+const router = express.Router();
+const { Form } = require('../controllers/formcontroller');
 
-router.post('/', (req, res) => {
-    res.send('Form')
-})
+router.post('/form', Form);
+
+module.exports = router;

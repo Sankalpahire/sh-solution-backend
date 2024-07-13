@@ -11,9 +11,11 @@ const PORT = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
+console.log('MONGODB_URI:', process.env.MONGODB_URI); // Add this line to debug the URI
+
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
-  .catch(err => console.log(err));
+  .catch(err => console.log('Failed to connect to MongoDB', err));
 
 const formSchema = new mongoose.Schema({
   name: String,
@@ -34,11 +36,7 @@ app.post('/save', (req, res) => {
     .catch(err => res.status(400).json({ error: err.message }));
 });
 
-app.get('/get', (req, res) => {
-  Form.find()
-    .then(forms => res.json(forms))
-    .catch(err => res.status(400).json({ error: err.message }));
-});
+
 
 app.use('/api/subscriber', subscriberRoutes);
 
