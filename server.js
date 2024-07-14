@@ -11,7 +11,7 @@ const PORT = process.env.PORT || 8000;
 app.use(bodyParser.json());
 app.use(cors());
 
-console.log('MONGODB_URI:', process.env.MONGODB_URI); // Add this line to debug the URI
+console.log('MONGODB_URI:', process.env.MONGODB_URI);
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('MongoDB connected'))
